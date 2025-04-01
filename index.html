@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Have You Seen Our Cat?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-weight: 500;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-weight: 300;
+      font-size: 1.1rem;
+      max-width: 600px;
+      text-align: center;
+    }
+    .contact {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .gallery {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .thumb {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .thumb:hover {
+      transform: scale(1.05);
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+    .overlay.active {
+      display: flex;
+    }
+    .overlay-content img, .overlay-content video {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+    }
+    .overlay-content {
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Have You Seen Our Cat?</h1>
+  <p>Our beloved cat has gone missing. If you've seen her or have any information, please get in touch with us immediately. She means the world to us and we’re very worried about her.</p>
+  <div class="contact">
+    📞 Phone: +47 123 45 678<br>
+    📧 Email: findmochi@example.com
+  </div>
+  <div class="gallery">
+    <img class="thumb" src="thumbs/cat1.jpg" alt="Cat Photo 1" data-full="media/cat1.jpg" />
+    <img class="thumb" src="thumbs/cat2.jpg" alt="Cat Photo 2" data-full="media/cat2.jpg" />
+    <img class="thumb" src="thumbs/cat3.jpg" alt="Cat Photo 3" data-full="media/cat3.jpg" />
+    <img class="thumb" src="thumbs/video.jpg" alt="Cat Video" data-video="media/catvideo.mp4" />
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="overlay-content">
+      <span class="close-btn" onclick="closeOverlay()">&times;</span>
+      <div id="overlay-media"></div>
+    </div>
+  </div>
+
+  <script>
+    const overlay = document.getElementById('overlay');
+    const overlayMedia = document.getElementById('overlay-media');
+    const thumbs = document.querySelectorAll('.thumb');
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        overlay.classList.add('active');
+        overlayMedia.innerHTML = '';
+
+        if (thumb.dataset.full) {
+          const img = document.createElement('img');
+          img.src = thumb.dataset.full;
+          overlayMedia.appendChild(img);
+        } else if (thumb.dataset.video) {
+          const video = document.createElement('video');
+          video.src = thumb.dataset.video;
+          video.controls = true;
+          video.autoplay = true;
+          overlayMedia.appendChild(video);
+        }
+      });
+    });
+
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      overlayMedia.innerHTML = '';
+    }
+  </script>
+</body>
+</html>
