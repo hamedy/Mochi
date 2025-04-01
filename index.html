@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Have You Seen Our Cat?</title>
+  <title>Have You Found Our Cat?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
@@ -82,15 +82,16 @@
       color: white;
       cursor: pointer;
     }
+    .tiger{
+        width: 500px;
+    }
   </style>
 </head>
 <body>
-  <h1>Have You Seen Our Cat?</h1>
-  <p>Our beloved cat has gone missing. If you've seen her or have any information, please get in touch with us immediately. She means the world to us and we’re very worried about her.</p>
-  <div class="contact">
-    📞 Phone: +47 123 45 678<br>
-    📧 Email: findmochi@example.com
-  </div>
+  <h1>Have you found Mochi, the tiger of Væretrøa?</h1>
+  <p>We would greatly appreciate it if you contact us as soon as you can. We love Mochi and if he goes missing, we'll go through hell until we find him. He likes to go out and we let him, so he can enjoy life!</p>
+  <div class="contact" id="contact-info"></div>
+  <img class="tiger" src="media/tiger.jpg" alt="tiger" />
   <div class="gallery">
     <img class="thumb" src="thumbs/mochi1.jpg" alt="Cat Photo 1" data-full="media/mochi1.jpg" />
     <img class="thumb" src="thumbs/mochi2.jpg" alt="Cat Photo 1" data-full="media/mochi2.jpg" />
@@ -98,6 +99,7 @@
     <img class="thumb" src="thumbs/mochi4.jpg" alt="Cat Photo 1" data-full="media/mochi4.jpg" />
     <img class="thumb" src="thumbs/mochi5.jpg" alt="Cat Photo 1" data-full="media/mochi5.jpg" />
     <img class="thumb" src="thumbs/mochi6.jpg" alt="Cat Photo 1" data-full="media/mochi6.jpg" />
+    <img class="thumb" src="thumbs/mochi.jpg" alt="Cat Photo 1" data-video="media/mochi.mp4" />
   </div>
 
   <div class="overlay" id="overlay">
@@ -107,7 +109,30 @@
     </div>
   </div>
 
+
+
   <script>
+    const contactInfo = document.getElementById('contact-info');
+
+    
+
+    const hamedName = 'Hamed Inanlou';
+    const hamedPhone = '&#43;47&#32;411&#32;87&#32;687';
+    const hamedTel = '+4741187687';
+
+    const haniehName = 'Hanieh Farahani';
+    const haniehPhone = '&#43;47&#32;463&#32;61&#32;866';
+    const haniehTel = '+4746361866';
+
+    const emailUser = 'findmochi';
+    const emailDomain = 'example.com';
+    const emailFull = emailUser + '&#64;' + emailDomain;
+
+    contactInfo.innerHTML = `
+      📞 ${hamedName}: <a href="tel:${hamedTel}">${hamedPhone}</a><br>
+      📞 ${haniehName}: <a href="tel:${haniehTel}">${haniehPhone}</a><br>
+    `;
+
     const overlay = document.getElementById('overlay');
     const overlayMedia = document.getElementById('overlay-media');
     const thumbs = document.querySelectorAll('.thumb');
